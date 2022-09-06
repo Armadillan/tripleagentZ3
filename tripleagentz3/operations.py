@@ -9,18 +9,19 @@ if Z3 is playing, pass False as player
 
 from z3 import *
 
-from basic import ExactlyNVirus
+from . import basic
+ExactlyNVirus = basic.ExactlyNVirus
 
 def Confession(player, victim, verdict):
     if verdict:
-        return Or(
-            And(player, Not(victim)),
-            And(Not(player), victim)
+        return And(
+            Implies(victim, Not(player)),
+            Implies(Not(victim), player)
         )
     else:
-        return Or(
-            And(player, victim),
-            And(Not(player), Not(victim))
+        return And(
+            Implies(player, victim),
+            Implies(Not(victim), Not(player))
         )
 
 def SecretIntel(player, victim_1, victim_2, verdict):

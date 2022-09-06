@@ -10,6 +10,8 @@ def GetAllModels(solver, player_list):
     models = []
     while solver.check() == sat:
         m = solver.model()
+        if list(m) == []:
+            return []
         models.append(m)
         solver.add(
             Or([X != m[X] for X in player_list])
