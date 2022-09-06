@@ -6,6 +6,7 @@ def ExactlyNVirus(player_list, N):
 
 def GetAllModels(solver, player_list):
     """player_list does not include Z3"""
+    solver.push()
     models = []
     while solver.check() == sat:
         m = solver.model()
@@ -13,4 +14,5 @@ def GetAllModels(solver, player_list):
         solver.add(
             Or([X != m[X] for X in player_list])
         )
+    solver.pop()
     return models
