@@ -11,11 +11,12 @@ B = Bool("B")
 C = Bool("C")
 D = Bool("D")
 players = [A, B, C, D]
+num_virus = 2
 # C & D are virus
 
 s = Solver()
 
-s.add(ExactlyNVirus(players, 2))
+s.add(ExactlyNVirus(players, num_virus))
 
 s.add(OldPhotographs(D, C, Z3))
 s.add(Confession(Z3, D, False))
@@ -29,3 +30,5 @@ print(models)
 percent = PlayerPercentages(models)
 
 print(percent)
+
+print(TeamsPercentages(models, 2))
