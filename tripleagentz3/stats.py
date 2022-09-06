@@ -19,5 +19,7 @@ def TeamsPercentages(models_list, num_virus):
             if all([model[x] for x in team]):
                 occurances += 1
         out[team] = occurances/len(models_list)
-        
     return out
+
+def SortStatDict(stat_dict, reverse = True):
+    return sorted(stat_dict.items(), key=lambda item: item[1], reverse=reverse)

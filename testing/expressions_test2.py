@@ -1,5 +1,3 @@
-from itertools import combinations
-
 from z3 import *
 from tripleagentz3.operations import *
 from tripleagentz3.basic import GetAllModels
@@ -31,4 +29,6 @@ percent = PlayerPercentages(models)
 
 print(percent)
 
-print(TeamsPercentages(models, 2))
+teams=TeamsPercentages(models, 2)
+
+print(SortStatdict(teams))
