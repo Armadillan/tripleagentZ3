@@ -8,6 +8,7 @@ B = Bool("B")
 C = Bool("C")
 D = Bool("D")
 players = [A, B, C, D]
+# C & D are virus
 
 s = Solver()
 
