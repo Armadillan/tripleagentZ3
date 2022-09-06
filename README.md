@@ -10,3 +10,4 @@
          * Alert when at least one virus is identified
          * Calculate percent chance that each player is virus?
     * Suggest which players to pick for secret intel, confession etc
+         * Calculate bits of information aquired from each option
