@@ -16,7 +16,10 @@ def GetAllModels(solver, player_list):
     """player_list does not include Z3"""
     solver.push()
     models = []
-    while solver.check() == sat:
+    check = solver.check()
+    if check != sat:
+        return check
+    while check == sat:
         m = solver.model()
         if list(m) == []:
             return []
@@ -24,5 +27,6 @@ def GetAllModels(solver, player_list):
         solver.add(
             Or([X != m[X] for X in player_list])
         )
+        check = solver.check()
     solver.pop()
     return models
