@@ -13,11 +13,12 @@ class Agent(ABC):
         self.solver = Solver()
         self.assumptions = assumptions
 
-    def __bool__(self):
-        return True
-
     @abstractmethod
     def add_info(self):
+        pass
+
+    @abstractmethod
+    def add_info_call(self):
         pass
 
     @abstractmethod
