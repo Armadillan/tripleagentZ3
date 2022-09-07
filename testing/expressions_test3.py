@@ -10,17 +10,16 @@ C = Bool("C")
 D = Bool("D")
 players = [A, B, C, D]
 num_virus = 2
-# C & D are virus
 
 s = Solver()
 
 s.add(ExactlyNVirus(players, num_virus))
 
-s.add(OldPhotographs(D, C, Z3))
-s.add(Confession(Z3, D, False))
-s.add(SecretIntel(B, Z3, D, True))
-s.add(AnonymousTip(A, Z3, False))
-s.add(DanishIntelligence(C, A, Z3))
+s.add(SecretIntel(C, Z3, D, False))
+s.add(AnonymousTip(D, B, True))
+s.add(OldPhotographs(Z3, A, B))
+s.add(Confession(B, A, False))
+s.add(DanishIntelligence(A, Z3, D))
 
 models = GetAllModels(s, players)
 print(models)
