@@ -12,8 +12,6 @@ class Agent(ABC):
     def __init__(self, assumptions):
         self.solver = Solver()
         self.assumptions = assumptions
-        if not Assumption.SERVICE_NEVER_LIE in self.assumptions:
-            raise MissingAssumption("Logic for service agents lying is not implemented yet.")
 
     def __bool__(self):
         return True

@@ -4,10 +4,9 @@ from z3 import *
 
 class Assumption(Enum):
     VIRUS_NEVER_BACKSTAB = 1
+    I_AM_PLAYING = 2
     SERVICE_NEVER_LIE = 2
-
-class MissingAssumption(Exception):
-    pass
+    SERVICE_NEVER_BACKSTAB = 3
 
 def ExactlyNVirus(player_list, N):
     """player_list does not include Z3"""
