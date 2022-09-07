@@ -55,6 +55,41 @@ class AnonymousTip(Operation):
                 knowledge.append(Implies(self.player, self.victim))
         return And(knowledge)
 
+class OldPhotographs(Operation):
+    def __init__(self, player, victim_1, victim_2, assumptions):
+        self.player = player
+        self.victim_1 = victim_1
+        self.victim_2 = victim_2
+        super().__init__(assumptions)
+
+    def expression(self):
+        knowledge = []
+        if Assumption.SERVICE_NEVER_LIE is self.assumptions:
+            knowledge.append(Implies(Not(self.player), Not(Xor(self.victim_1, self.victim_2))))
+        return And(knowledge)
+
+class SecretIntel(Operation):
+    def __init__(self, player, victim_1, victim_2, verdict, assumptions):
+        self.player = player
+        self.victim_1 = victim_1
+        self.victim_2 = victim_2
+        self.verdict = verdict
+        super().__init__(assumptions)
+    
+    def expression(self):
+        #TODO
+        pass
+
+class Confession(Operation):
+    def __init__(self, player, victim, verdict, assumptions):
+        self.player = player
+        self.victim = victim
+        self.verdict = verdict
+        super().__init__(assumptions)
+    
+    def expression(self):
+        #TODO
+        pass
 
 if __name__ == "__main__":
     di = DanishIntelligence(True, False, False, (Assumption.SERVICE_NEVER_LIE, Assumption.VIRUS_NEVER_BACKSTAB, Assumption.SERVICE_NEVER_BACKSTAB))
