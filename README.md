@@ -3,7 +3,7 @@
 ### TODO/IDEAS
 * Allow other players to retract calls
     * Live tool able to retract calls/suggests retracting call
-    * Each call can have a corresponding bool that implies it and is set to True initially and False if call is retracted
+    * Each call can have a corresponding bool that implies it and is assumed to be True, and is set to False if call is retracted
 * Incorporate extra roles (triple agend, suspicious service etc)
 * Incorporate Hidden Agenda
 * Create "live" tool, usable during gameplay
