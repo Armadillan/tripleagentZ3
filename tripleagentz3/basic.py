@@ -1,4 +1,13 @@
+from enum import Enum
+
 from z3 import *
+
+class Assumption(Enum):
+    VIRUS_NEVER_BACKSTAB = 1
+    SERVICE_NEVER_LIE = 2
+
+class MissingAssumption(Exception):
+    pass
 
 def ExactlyNVirus(player_list, N):
     """player_list does not include Z3"""

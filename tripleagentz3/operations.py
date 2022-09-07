@@ -1,49 +1,35 @@
-"""
-Creates z3 expressions for each operation
-
-assumes service never lies
-and virus never incriminate each other
-
-if Z3 is playing, pass False as player
-"""
+from abc import ABC, abstractmethod
 
 from z3 import *
 
-from . import basic
-ExactlyNVirus = basic.ExactlyNVirus
+from tripleagentz3.basic import *
+from tripleagentz3.stats import *
 
-def Confession(player, victim, verdict):
-    if verdict:
-        return And(
-            Implies(victim, Not(player)),
-            Implies(Not(victim), player)
-        )
-    else:
-        return And(
-            Implies(player, victim),
-            Implies(Not(victim), Not(player))
-        )
+class Operation(ABC):
+    
+    @abstractmethod
+    def __init__(self, assumptions):
+        self.assumptions = assumptions
+        if not Assumption.SERVICE_NEVER_LIE in self.assumptions:
+            raise MissingAssumption("Logic for service agents lying is not implemented yet.")
 
-def SecretIntel(player, victim_1, victim_2, verdict):
-    # verdict == True means player claims at least one of victim_1 OR victim_2 is virus
-    if verdict:
-        return Implies(Not(player), Or(victim_1, victim_2))
-    else:
-        return Implies(Not(player), And(Not(victim_1),Not(victim_2)))
+    @abstractmethod
+    def expression(self):
+        pass
 
-def OldPhotographs(player, victim_1, victim_2):
-    return Implies(Not(player), Not(Xor(victim_1, victim_2)))
+class DanishIntelligence(Operation):
+    def __init__(self, player, victim_1, victim_2, assumptions):
+        self.player = player
+        self.victim_1 = victim_1
+        self.victim_2 = victim_2
+        super().__init__(assumptions)
+    
+    def expression(self):
+        if Assumption.SERVICE_NEVER_LIE in self.assumptions:
+            # if Assumption.VIRUS_NEVER_BACKSTAB in self.assumptions:
+            return Implies(Not(self.player), Xor(self.victim_1, self.victim_2))
 
-def DanishIntelligence(player, victim_1, victim_2):
-    return Implies(Not(player), Xor(victim_1, victim_2))
 
-def AnonymousTip(player, victim, verdict):
-    # verdict is True == players says victim is virus
-    if verdict:
-        return Implies(Not(player), victim)
-    else:
-        # player says victim is not virus
-        return And(
-            Implies(victim, player),
-            Implies(Not(player), Not(victim))
-        )
+if __name__ == "__main__":
+    di = DanishIntelligence(True, False, False, (Assumption.SERVICE_NEVER_LIE, Assumption.VIRUS_NEVER_BACKSTAB))
+    print(di.expression())
