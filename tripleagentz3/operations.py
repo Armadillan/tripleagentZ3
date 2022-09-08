@@ -56,6 +56,10 @@ class AnonymousTip(Operation):
         return And(knowledge)
 
 class OldPhotographs(Operation):
+    """
+    No backstabs possible here, that is, backstab assumptions do nothing
+    Without SERVICE_NEVER_LIES assumption, no info is gained
+    """
     def __init__(self, player, victim_1, victim_2, assumptions):
         self.player = player
         self.victim_1 = victim_1
@@ -69,6 +73,10 @@ class OldPhotographs(Operation):
         return And(knowledge)
 
 class SecretIntel(Operation):
+    """
+    No backstabs possible here, that is, backstab assumptions do nothing
+    Without SERVICE_NEVER_LIES assumption, no info is gained
+    """
     def __init__(self, player, victim_1, victim_2, verdict, assumptions):
         self.player = player
         self.victim_1 = victim_1
@@ -77,8 +85,16 @@ class SecretIntel(Operation):
         super().__init__(assumptions)
     
     def expression(self):
-        #TODO
-        pass
+        knowledge = []
+        # yes this code is a mess, but it's structred this way to be similar
+        # to the other operations and be easier to change in the future
+        if self.verdict:
+            if Assumption.SERVICE_NEVER_LIE in self.assumptions:
+                knowledge.append(Implies(Not(self.player), Or(self.victim_1, self.victim_2)))
+        else:
+            if Assumption.SERVICE_NEVER_LIE in self.assumptions:
+                knowledge.append(Implies(Not(self.player), Not(Or(self.victim_1, self.victim_2))))
+        return And(knowledge)
 
 class Confession(Operation):
     def __init__(self, player, victim, verdict, assumptions):
@@ -88,8 +104,18 @@ class Confession(Operation):
         super().__init__(assumptions)
     
     def expression(self):
-        #TODO
-        pass
+        knowledge = []
+        if self.verdict:
+            if Assumption.SERVICE_NEVER_LIE in self.assumptions or  Assumption.SERVICE_NEVER_BACKSTAB in self.assumptions:
+                knowledge.append(Or(self.player, self.victim))
+            if Assumption.VIRUS_NEVER_BACKSTAB in self.assumptions:
+                knowledge.append(Not(And(self.player, self.victim)))
+        else:
+            if Assumption.SERVICE_NEVER_LIE in self.assumptions:
+                knowledge.append(Implies(Not(self.victim), Not(self.player)))
+        return And(knowledge)
+
+
 
 if __name__ == "__main__":
     di = DanishIntelligence(True, False, False, (Assumption.SERVICE_NEVER_LIE, Assumption.VIRUS_NEVER_BACKSTAB, Assumption.SERVICE_NEVER_BACKSTAB))

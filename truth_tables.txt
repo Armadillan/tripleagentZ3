@@ -1,0 +1,69 @@
+Secret intel
+
+P  V1 V2 Ve
+0  0  0  0
+0  0  0  1 Lie! (S-B?)
+0  0  1  0 Lie!
+0  0  1  1
+0  1  0  0 Lie!
+0  1  0  1
+0  1  1  0 Lie!
+0  1  1  1
+1  0  0  0
+1  0  0  1
+1  0  1  0
+1  0  1  1
+1  1  0  0
+1  1  0  1
+1  1  1  0
+1  1  1  1 (V-B?)
+
+
+
+
+
+Confession
+
+P V Ve
+0 0 0
+0 0 1 Lie! S-B
+0 1 0
+0 1 1
+1 0 0 Lie!
+1 0 1 
+1 1 0
+1 1 1 V-B
+
+!Ve:
+No backstab
+No info
+
+Service never lie
+A B T
+0 0 1
+0 1 1
+1 0 0
+1 1 1
+
+Ve:
+Virus never backstab
+A B T !(AB)
+0 0 1   1
+0 1 1   1
+1 0 1   1
+1 1 0   0
+
+Service never backstab
+A B T  Same as below
+0 0 0
+0 1 1
+1 0 1
+1 1 1
+
+Service never lie
+A B   T (A+B)
+0 0   0   0
+0 1   1   1
+1 0   1   1
+1 1   1   1
+
