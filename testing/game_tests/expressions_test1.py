@@ -19,4 +19,4 @@ s.add(OldPhotographs(Z3, C, D))
 s.add(AnonymousTip(C, B, False))
 s.add(SecretIntel(D, Z3, B, True))
 
-print(GetAllModels(s, [A, B, C, D]))
+print(GetAllModels(s, [A, B, C, D])[0])

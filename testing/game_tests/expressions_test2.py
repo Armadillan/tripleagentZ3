@@ -22,7 +22,7 @@ s.add(SecretIntel(B, Z3, D, True))
 s.add(AnonymousTip(A, Z3, False))
 s.add(DanishIntelligence(C, A, Z3))
 
-models = GetAllModels(s, players)
+models, _ = GetAllModels(s, players)
 print(models)
 
 percent = PlayerPercentages(models)

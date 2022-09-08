@@ -22,7 +22,7 @@ s.add(AnonymousTip(A, C, False))
 
 #equivalent to just "s.add(A)"
 
-models = GetAllModels(s, players)
+models, _ = GetAllModels(s, players)
 print(models)
 
 percent = PlayerPercentages(models)

@@ -21,7 +21,7 @@ s.add(OldPhotographs(Z3, A, B))
 s.add(Confession(B, A, False))
 s.add(DanishIntelligence(A, Z3, D))
 
-models = GetAllModels(s, players)
+models, _ = GetAllModels(s, players)
 print(models)
 
 percent = PlayerPercentages(models)

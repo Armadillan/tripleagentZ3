@@ -19,8 +19,6 @@ def GetAllModels(solver, player_list):
     solver.push()
     models = []
     check = solver.check()
-    if check != sat:
-        return check
     while check == sat:
         m = solver.model()
         if list(m) == []:
@@ -31,4 +29,4 @@ def GetAllModels(solver, player_list):
         )
         check = solver.check()
     solver.pop()
-    return models
+    return models, check
