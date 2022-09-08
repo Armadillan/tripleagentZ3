@@ -20,6 +20,9 @@ FactionSort, factions = EnumSort("Faction",
 # spy transfer can make it so you dont't know your faction...
 
 class Player(ABC):
+    """
+    To be used when representing players as boolean values is no longer good enough.
+    """
 
     @abstractmethod
     def __init__(self, name):

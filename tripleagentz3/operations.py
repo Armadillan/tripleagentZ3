@@ -13,6 +13,9 @@ class Operation(ABC):
 
     @abstractmethod
     def expression(self):
+        """
+        returns Z3 expression representing information gained from operation
+        """
         pass
 
 class DanishIntelligence(Operation):

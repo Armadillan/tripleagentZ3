@@ -1,13 +1,17 @@
 """
-Creates z3 expressions for each operation
+DEPRECATED in favour of tripleagentz3.operations.
+Will be removed at some point.
 
+Creates z3 expressions for each operation
 assumes service never lies
 and virus never incriminate each other
-
 if Z3 is playing, pass False as player
 """
+from warnings import warn
 
 from z3 import *
+
+warn("tripleagentz3.operations_functions is deprecated in favour of tripleagentz3.operations. This module will be removed at some point.", FutureWarning, stacklevel=2)
 
 def Confession(player, victim, verdict):
     if verdict:
