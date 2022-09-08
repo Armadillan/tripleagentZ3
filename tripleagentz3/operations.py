@@ -29,7 +29,7 @@ class DanishIntelligence(Operation):
         if Assumption.SERVICE_NEVER_BACKSTAB in self.assumptions:
             knowledge.append(Implies(Not(self.player), Or(self.victim_1, self.victim_2)))
         if Assumption.VIRUS_NEVER_BACKSTAB in self.assumptions:
-            knowledge.append(Implies(self.player), Not(And(self.victim_1, self.victim_2)))
+            knowledge.append(Implies(self.player, Not(And(self.victim_1, self.victim_2))))
 
         return And(knowledge)
 
