@@ -29,14 +29,21 @@ P V Ve
 0 0 1 Lie! S-B
 0 1 0
 0 1 1
-1 0 0 Lie!
-1 0 1 
+1 0 0 Lie! V-C
+1 0 1 V-C
 1 1 0
 1 1 1 V-B
 
 !Ve:
-No backstab
-No info
+No backstabs:
+no info
+
+Virus don't confess:
+A B T  !A + B
+0 0 1
+0 1 1
+1 0 0
+1 1 1
 
 Service never lie
 A B T
@@ -46,6 +53,10 @@ A B T
 1 1 1
 
 Ve:
+
+Virus dont confess
+same as !Ve
+
 Virus never backstab
 A B T !(AB)
 0 0 1   1

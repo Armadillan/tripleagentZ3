@@ -105,6 +105,10 @@ class Confession(Operation):
     
     def expression(self):
         knowledge = []
+
+        if Assumption.VIRUS_DONT_CONFESS in self.assumptions:
+            knowledge.append(Implies(self.player, self.victim))
+
         if self.verdict:
             if Assumption.SERVICE_NEVER_LIE in self.assumptions or  Assumption.SERVICE_NEVER_BACKSTAB in self.assumptions:
                 knowledge.append(Or(self.player, self.victim))

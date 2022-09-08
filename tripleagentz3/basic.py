@@ -7,6 +7,8 @@ class Assumption(Enum):
     SERVICE_NEVER_LIE = 2
     I_AM_PLAYING = 2
     SERVICE_NEVER_BACKSTAB = 3
+    #Means virus always give Confession to other virus, only applicable to Confession
+    VIRUS_DONT_CONFESS = 4
 
 def ExactlyNVirus(player_list, N):
     """player_list does not include Z3"""
